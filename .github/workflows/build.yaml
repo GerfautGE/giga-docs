@@ -1,0 +1,19 @@
+name: Build
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+      - name: install bun
+        run: curl -fsSL https://bun.sh/install | bash
+      - name: install dependencies
+        run: bun install
+      - name: build
+        run: bun run generate
+      - name: deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./output/public
