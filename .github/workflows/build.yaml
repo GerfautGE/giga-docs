@@ -7,7 +7,9 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v4
       - name: install bun
-        run: curl -fsSL https://bun.sh/install | bash && source /home/runner/.bashrc
+        run: curl -fsSL https://bun.sh/install | bash
+      - name: add bun to path
+        run: source /home/runner/.bashrc
       - name: install dependencies
         run: bun install
       - name: build
